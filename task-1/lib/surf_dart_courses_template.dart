@@ -151,3 +151,53 @@ final mapAfter2010 = {
     ),
   ],
 };
+
+// решение задания
+
+void main() {
+  List<AgriculturalMachinery> allMachine = [];
+
+  // объединить технику в один список
+  mapBefore2010.values.forEach((Territory) {
+    Territory.forEach((AgriculturalMachinery) {
+      allMachine.addAll(AgriculturalMachinery.machineries);
+    });
+  });
+
+  mapAfter2010.values.forEach((Territory) {
+    Territory.forEach((AgriculturalMachinery) {
+      allMachine.addAll(AgriculturalMachinery.machineries);
+    });
+  });
+
+  // исключить повторения одинаковых
+  Set<AgriculturalMachinery> uniqueMachine = allMachine.toSet();
+  List<AgriculturalMachinery> result = uniqueMachine.toList();
+
+  result.sort((a, b) => a.releaseDate.compareTo(b.releaseDate));
+
+  // вычислить средний возраст всей техники
+  double totalAge = 0;
+  var currentDate = DateTime.now().year;
+
+  result.forEach((machinaries) {
+    int age = currentDate - machinaries.releaseDate.year;
+    totalAge = totalAge + age;
+  });
+  double averageAge = totalAge / result.length;
+
+  // вычислить возраст 50% старой техники
+
+  List<AgriculturalMachinery> oldestMachine =
+      result.sublist(0, result.length ~/ 2);
+
+  int totalOldtAge = 0;
+  oldestMachine.forEach((machinaries) {
+    int age = currentDate - machinaries.releaseDate.year;
+    totalOldtAge = totalOldtAge + age;
+  });
+  double averageOldAge = totalOldtAge / oldestMachine.length;
+
+  print('Средний возраст всей техники: $averageAge');
+  print('Средней возраст 50% самой старой техники: $averageOldAge');
+}
