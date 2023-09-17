@@ -10,16 +10,12 @@ class Phone {
   Phone(this.brand, this.model, this.price, this.batteryCapacity, this.camera);
 
   Phone.named(this.price, this.batteryCapacity, this.camera,
-      {required this.brand, required this.model}) {
-    this.brand = brand;
-    this.model = model;
-    this.price = price;
-    this.batteryCapacity;
-    this.camera;
-  }
+      {required this.brand, required this.model});
 
-  cameraFunc() {
-    return 'Камера умеет делать *ЩЕЛК*, качество фотографии просто отличное';
+  String cameraFunc() {
+    var funcText =
+        'Камера умеет делать *ЩЕЛК*, качество фотографии просто отличное';
+    return funcText;
   }
 
   set phoneNumber(int value) {
