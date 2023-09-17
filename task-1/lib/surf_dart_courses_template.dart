@@ -155,16 +155,10 @@ final mapAfter2010 = {
 // решение задания
 
 void main() {
+  final totalMap = {...mapBefore2010, ...mapAfter2010};
   List<AgriculturalMachinery> allMachine = [];
 
-  // объединить технику в один список
-  mapBefore2010.values.forEach((Territory) {
-    Territory.forEach((AgriculturalMachinery) {
-      allMachine.addAll(AgriculturalMachinery.machineries);
-    });
-  });
-
-  mapAfter2010.values.forEach((Territory) {
+  totalMap.values.forEach((Territory) {
     Territory.forEach((AgriculturalMachinery) {
       allMachine.addAll(AgriculturalMachinery.machineries);
     });
@@ -177,26 +171,26 @@ void main() {
   result.sort((a, b) => a.releaseDate.compareTo(b.releaseDate));
 
   // вычислить средний возраст всей техники
-  double totalAge = 0;
+  var totalAge = 0;
   var currentDate = DateTime.now().year;
 
   result.forEach((machinaries) {
-    int age = currentDate - machinaries.releaseDate.year;
+    final age = currentDate - machinaries.releaseDate.year;
     totalAge = totalAge + age;
   });
-  double averageAge = totalAge / result.length;
+  final averageAge = totalAge / result.length;
 
   // вычислить возраст 50% старой техники
 
   List<AgriculturalMachinery> oldestMachine =
       result.sublist(0, result.length ~/ 2);
 
-  int totalOldtAge = 0;
+  var totalOldtAge = 0;
   oldestMachine.forEach((machinaries) {
-    int age = currentDate - machinaries.releaseDate.year;
+    final age = currentDate - machinaries.releaseDate.year;
     totalOldtAge = totalOldtAge + age;
   });
-  double averageOldAge = totalOldtAge / oldestMachine.length;
+  final averageOldAge = totalOldtAge / oldestMachine.length;
 
   print('Средний возраст всей техники: $averageAge');
   print('Средней возраст 50% самой старой техники: $averageOldAge');
