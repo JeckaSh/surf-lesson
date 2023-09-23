@@ -17,6 +17,9 @@ class PokerPlayer {
       _surenessInWin = strategy(cardOnDesk, _currentHand);
 }
 
+typedef Strategy = double Function(
+    List<String> cardOnDesk, List<String> _currentHand);
+
 void main() {
   final opponent = PokerPlayer();
 
@@ -25,10 +28,12 @@ void main() {
   /// Опишите его.
   final Strategy fakeStrategy = (p0, p1) {
     /// Ваш код - здесь
+    print('Opponent cards: ${opponent._currentHand}');
+    return 0;
   };
 
   opponent.calculateProbabilities(
-    ['Nine of diamonds', 'king of hearts'],
+    ['Nine of diamonds', 'King of hearts'],
     fakeStrategy,
   );
 }
