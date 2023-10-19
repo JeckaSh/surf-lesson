@@ -1,8 +1,11 @@
-filterProducts(List<RawProductItem> products) {
+Map<String, Map<String, List<String>>> filterProducts(
+    List<RawProductItem> products) {
   Map<String, Map<String, List<String>>> result = {};
 
+  var nowTime = DateTime.now();
+
   for (var product in products) {
-    if (product.expirationDate.isBefore(DateTime.now()) || product.qty == 0) {
+    if (product.expirationDate.isBefore(nowTime) || product.qty == 0) {
       continue;
     }
 
