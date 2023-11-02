@@ -46,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       if (_counter <= 0) {
         _counter = 0;
+        _wasRemove++;
       } else {
         _counter--;
         _wasRemove++;
