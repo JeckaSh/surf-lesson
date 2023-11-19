@@ -28,7 +28,7 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> with TickerProviderStateMixin {
-  List colors = [
+  final colors = [
     Colors.red,
     Colors.green,
     Colors.yellow,
@@ -36,22 +36,22 @@ class _MyWidgetState extends State<MyWidget> with TickerProviderStateMixin {
     Colors.purple
   ];
 
-  Random random = new Random();
+  final random = Random();
 
-  int colorIndex = 0;
+  var colorIndex = 0;
 
   void changeIndex() {
     setState(() {
       colorIndex = random.nextInt(5);
-      print('Change color');
     });
+    print('Change color');
   }
 
   void changeSize() {
     setState(() {
       selected = !selected;
-      print('Change size');
     });
+    print('Change size');
   }
 
   void changeAnimation() {
@@ -61,13 +61,21 @@ class _MyWidgetState extends State<MyWidget> with TickerProviderStateMixin {
       _controller.repeat();
     setState(() {
       playAnimation = !playAnimation;
-      print('Animation');
     });
+    print('Animation');
   }
 
-  bool selected = false;
+  void changePosition(details) {
+    setState(() {
+      offset =
+          Offset(offset.dx + details.delta.dx, offset.dy + details.delta.dy);
+    });
+    print('Change position');
+  }
 
-  bool playAnimation = false;
+  var selected = false;
+
+  var playAnimation = false;
 
   late final AnimationController _controller = AnimationController(
     duration: const Duration(seconds: 2),
@@ -96,24 +104,18 @@ class _MyWidgetState extends State<MyWidget> with TickerProviderStateMixin {
           left: offset.dx,
           top: offset.dy,
           child: GestureDetector(
-              onDoubleTap: () => changeIndex(),
-              onPanUpdate: (details) => setState(() {
-                    offset = Offset(offset.dx + details.delta.dx,
-                        offset.dy + details.delta.dy);
-                  }),
-              onTap: () => changeSize(),
-              onLongPress: () => changeAnimation(),
-              child: Align(
-                alignment: Alignment.center,
-                child: RotationTransition(
-                  turns: _animation,
-                  child: AnimatedContainer(
-                    width: selected ? 200.0 : 100.0,
-                    height: selected ? 200.0 : 400.0,
-                    color: colors[colorIndex],
-                    duration: const Duration(seconds: 2),
-                    curve: Curves.fastOutSlowIn,
-                  ),
+              onDoubleTap: changeIndex,
+              onPanUpdate: changePosition,
+              onTap: changeSize,
+              onLongPress: changeAnimation,
+              child: RotationTransition(
+                turns: _animation,
+                child: AnimatedContainer(
+                  width: selected ? 200.0 : 300.0,
+                  height: selected ? 200.0 : 300.0,
+                  color: colors[colorIndex],
+                  duration: const Duration(seconds: 2),
+                  curve: Curves.fastOutSlowIn,
                 ),
               )),
         ),
