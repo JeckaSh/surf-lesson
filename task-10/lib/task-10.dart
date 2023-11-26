@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,105 +11,255 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Text('Визитка'),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/business-card-svgrepo-com.svg',
+                width: 40,
+                height: 40,
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                'Визитка',
+                style: TextStyle(fontFamily: 'Caveat', fontSize: 32),
+              ),
+            ],
+          ),
         ),
-        body: SingleChildScrollView(
+        body: Container(
           child: Padding(
             padding: const EdgeInsets.all(25.0),
-            child: Column(
-              children: [
-                // SizedBox(
-                //   height: 25,
-                // ),
-                Row(
-                  children: [
-                    // SizedBox(
-                    //   width: 25,
-                    // ),
-                    SizedBox(
-                      width: 180,
-                      height: 220,
-                      child: ColoredBox(
-                        color: Colors.black,
-                        child: Center(
-                          child: Text(
-                            'Фото',
-                            style: TextStyle(color: Colors.white),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 180,
+                        height: 300,
+                        child: Image.asset(
+                          'assets/images/photo.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      SizedBox(
+                        width: 180,
+                        height: 300,
+                        child: ColoredBox(
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'ФИО',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  'Шевельков Евгений Владимирович',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 24, fontFamily: 'Caveat'),
+                                ),
+                                Text(
+                                  'Возраст',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  '27',
+                                  style: TextStyle(
+                                      fontSize: 24, fontFamily: 'Caveat'),
+                                ),
+                                Text(
+                                  'О себе',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text(
+                                  'Строю атомные ледоколы',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 24, fontFamily: 'Caveat'),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 400,
+                    height: 1170,
+                    child: ColoredBox(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/medal-svgrepo-com.svg',
+                                  width: 40,
+                                  height: 40,
+                                ),
+                                Text(
+                                  'Увлечения:',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              'В данный момент профессионально увлекаюсь строительством атомных ледоколов, в свободное время учу Dart и Flutter.',
+                              style:
+                                  TextStyle(fontFamily: 'Caveat', fontSize: 24),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: Image.asset('assets/images/boat1.jpg'),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: Image.asset('assets/images/boat2.jpg'),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: Image.asset('assets/images/boat3.jpg'),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                              child: Image.asset('assets/images/boat4.jpg'),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    SizedBox(
-                      width: 180,
-                      height: 220,
-                      child: ColoredBox(
-                        color: Colors.black,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
+                  ),
+                  SizedBox(
+                    width: 400,
+                    height: 400,
+                    child: ColoredBox(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                'ФИО',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                height: 5,
+                              SvgPicture.asset(
+                                'assets/images/office-svgrepo-com.svg',
+                                height: 40,
+                                width: 40,
                               ),
                               Text(
-                                'Возраст',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                height: 25,
-                              ),
-                              Text(
-                                'О себе',
-                                style: TextStyle(color: Colors.white),
+                                'Опыт в разработке:',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 18),
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 400,
-                  height: 150,
-                  child: ColoredBox(
-                    color: Colors.black,
-                    child: Center(
-                      child: Text(
-                        'Увлечения',
-                        style: TextStyle(color: Colors.white),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/java.png',
+                                height: 40,
+                                width: 40,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Разработка модификаций для Minecraft\nна языке Java',
+                                style: TextStyle(
+                                    fontFamily: 'Caveat', fontSize: 24),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            height: 5,
+                            width: 400,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(5)),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/c++.png',
+                                height: 40,
+                                width: 40,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Разработка простенького \ntower defence на C++',
+                                style: TextStyle(
+                                    fontFamily: 'Caveat', fontSize: 24),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            height: 5,
+                            width: 400,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(5)),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/lua.png',
+                                height: 40,
+                                width: 40,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Разработка модификаций и скриптов\nдля MTA SA и Cataclysm DDA',
+                                style: TextStyle(
+                                    fontFamily: 'Caveat', fontSize: 24),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 400,
-                  height: 150,
-                  child: ColoredBox(
-                    color: Colors.black,
-                    child: Center(
-                      child: Text(
-                        'Опыт в разработке',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
